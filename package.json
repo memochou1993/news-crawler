@@ -1,16 +1,22 @@
 {
-    "name": "news-crawler-browser",
+    "name": "news-crawler",
     "version": "0.0.1",
     "type": "module",
-    "description": "This is an example of a Crawlee project.",
+    "description": "A tool for gathering news data from various sources.",
+    "scripts": {
+        "install:chromium": "npx @puppeteer/browsers install chromium --path $(pwd)/bin",
+        "start": "node src/main.js"
+    },
+    "author": "memochou1993@gmail.com",
+    "license": "ISC",
     "dependencies": {
         "crawlee": "^3.0.0",
+        "dayjs": "^1.11.10",
+        "dotenv": "^16.3.1",
         "puppeteer": "*"
     },
-    "scripts": {
-        "start": "node src/main.js",
-        "test": "echo \"Error: oops, the actor has no tests yet, sad!\" && exit 1"
-    },
-    "author": "It's not you it's me",
-    "license": "ISC"
+    "devDependencies": {
+        "eslint": "^8.56.0",
+        "eslint-config-airbnb": "^19.0.4"
+    }
 }

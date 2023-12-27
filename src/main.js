@@ -1,14 +1,19 @@
-// For more information, see https://crawlee.dev/
-import { PuppeteerCrawler, ProxyConfiguration } from 'crawlee';
-import { router } from './routes.js';
+import 'dotenv/config';
+import LTNCrawler from './ltn/index.js';
 
-const startUrls = ['https://crawlee.dev'];
-
-const crawler = new PuppeteerCrawler({
-    // proxyConfiguration: new ProxyConfiguration({ proxyUrls: ['...'] }),
-    requestHandler: router,
-    // Comment this option to scrape the full website.
-    maxRequestsPerCrawl: 20,
+const ltnCrawler = new LTNCrawler({
+  maxRequestsPerCrawl: 1000,
+  maxConcurrency: 10,
+  launchContext: {
+    launchOptions: {
+      executablePath: process.env.CRAWLER_EXECUTABLE_PATH,
+      headless: process.env.CRAWLER_HEADLESS === 'true',
+    },
+  },
 });
 
-await crawler.run(startUrls);
+ltnCrawler.run({
+  keyword: '賴清德',
+  startDate: '2023-12-23',
+  endDate: '2023-12-24',
+});

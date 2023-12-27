@@ -1,8 +1,25 @@
-# Crawlee + PuppeteerCrawler + JavaScript project
+News Crawler
+===
 
-This template is a production ready boilerplate for developing with `PuppeteerCrawler`. Use this to bootstrap your projects using the most up-to-date code.
+# Overview
 
-If you're looking for examples or want to learn more visit:
+The News Crawler project is a tool created for gathering news data from diverse sources. Whether you're interested in monitoring headlines, tracking trends, or analyzing news content, this project provides a flexible and efficient solution for scraping relevant information.
 
-- [Documentation](https://crawlee.dev/api/puppeteer-crawler/class/PuppeteerCrawler)
-- [Examples](https://crawlee.dev/docs/examples/puppeteer-crawler)
+# Installation
+
+Before using the News Crawler, make sure to install the required dependencies. Run the following commands to set up the necessary environment:
+
+```bash
+npm ci
+npm run install:chromium
+```
+
+# Getting Started
+
+To start the news data gathering process, execute the following command:
+
+```bash
+npm start
+```
+
+This command will initiate the main functionality of the news crawler.
