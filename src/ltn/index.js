@@ -1,3 +1,4 @@
+import log from '@apify/log';
 import { PuppeteerCrawler } from 'crawlee';
 import dayjs from 'dayjs';
 import minMax from 'dayjs/plugin/minMax.js';
@@ -26,8 +27,8 @@ class LTNCrawler {
     for (let i = 0; i < range; i += 1) {
       const from = start.add(i, 'day').format(DATE_FORMAT);
       const to = start.add(i + 1, 'day').format(DATE_FORMAT);
-      console.info(`Executing crawler for keyword "${keyword}" from ${from} to ${to}`);
-      await this.execute({
+      log.info(`Preparing the crawler for the keyword "${keyword}" from ${from} to ${to}`);
+      await this.start({
         keyword,
         startDate: from,
         endDate: to,
@@ -35,7 +36,7 @@ class LTNCrawler {
     }
   }
 
-  execute({
+  start({
     keyword,
     startDate,
     endDate,
