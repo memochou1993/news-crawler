@@ -11,7 +11,6 @@ Before using the News Crawler, make sure to install the required dependencies. R
 
 ```bash
 npm ci
-npm run install:chrome
 ```
 
 ## Configuration
