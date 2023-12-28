@@ -10,6 +10,7 @@
     "author": "memochou1993@gmail.com",
     "license": "ISC",
     "dependencies": {
+        "commander": "^11.1.0",
         "crawlee": "^3.0.0",
         "dayjs": "^1.11.10",
         "dotenv": "^16.3.1",

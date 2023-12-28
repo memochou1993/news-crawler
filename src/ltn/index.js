@@ -1,20 +1,43 @@
 import { PuppeteerCrawler } from 'crawlee';
 import dayjs from 'dayjs';
+import { BASE_URL, DATE_FORMAT } from './constant/index.js';
 import createRouter from './router/index.js';
-
-export const BASE_URL = 'https://search.ltn.com.tw/list';
-export const DATE_FORMAT = 'YYYYMMDD';
 
 class LTNCrawler {
   constructor(options) {
-    this.options = options;
+    this.crawler = new PuppeteerCrawler({
+      requestHandler: createRouter(),
+      ...options,
+    });
   }
 
-  run({
+  async run({
+    keyword,
+    from,
+    to,
+  }) {
+    const start = dayjs(from);
+    const end = dayjs(to);
+    const range = end.diff(start, 'day');
+
+    for (let i = 0; i < range; i += 1) {
+      const from = start.add(i, 'day').format(DATE_FORMAT);
+      const to = start.add(i + 1, 'day').format(DATE_FORMAT);
+      await this.execute({
+        keyword,
+        startDate: from,
+        endDate: to,
+      });
+    }
+  }
+
+  execute({
     keyword,
     startDate,
     endDate,
   }) {
+    console.log(`Executing crawler for keyword "${keyword}" from ${startDate} to ${endDate}`);
+
     const params = {
       keyword,
       start_time: dayjs(startDate).format(DATE_FORMAT),
@@ -29,12 +52,7 @@ class LTNCrawler {
       url.searchParams.set(key, value);
     });
 
-    const crawler = new PuppeteerCrawler({
-      requestHandler: createRouter(this.startDate),
-      ...this.options,
-    });
-
-    return crawler.run([
+    return this.crawler.run([
       url.toString(),
     ]);
   }

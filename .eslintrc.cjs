@@ -6,5 +6,6 @@ module.exports = {
   rules: {
     'import/extensions': 'off',
     'no-shadow': 'off',
+    'no-await-in-loop': 'off',
   },
 };

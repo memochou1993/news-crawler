@@ -1,20 +1,30 @@
 import { Dataset } from 'crawlee';
+import dayjs from 'dayjs';
+import { DATE_FORMAT } from '../constant/index.js';
 
-const fetchItem = (id) => async ({ request, page, log }) => {
+const fetchItem = async ({ request, page, log }) => {
   const title = await page.title();
-  log.info(title, { url: request.loadedUrl });
-
-  const data = await page.$$eval('p', ($elements) => (
+  const timestamp = dayjs(await page.$eval('.time', ({ innerText }) => innerText));
+  const paragraphs = await page.$$eval('p', ($elements) => (
     $elements
       .map(({ innerText }) => innerText)
       .filter((v) => v)
   ));
 
-  const dataset = await Dataset.open(id);
-  dataset.pushData({
-    url: request.loadedUrl,
+  const data = {
     title,
-    data,
+    date: timestamp.toISOString(),
+    url: request.loadedUrl,
+    data: paragraphs,
+  };
+
+  const id = timestamp.format(DATE_FORMAT);
+  const dataset = await Dataset.open(id);
+  dataset.pushData(data);
+
+  log.info(title, {
+    date: data.date,
+    url: data.url,
   });
 };
 

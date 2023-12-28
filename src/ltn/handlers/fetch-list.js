@@ -1,6 +1,6 @@
-import { LABEL_ITEM, LABEL_LIST } from '../../constant/index.js';
+import { LABEL_ITEM, LABEL_LIST } from '../constant/index.js';
 
-const fetchList = () => async ({ page, enqueueLinks, log }) => {
+const fetchList = async ({ page, enqueueLinks, log }) => {
   const links = await enqueueLinks({
     label: LABEL_ITEM,
     strategy: 'same-domain',
