@@ -31,5 +31,9 @@ CRAWLER_EXECUTABLE_PATH=
 To start the news data gathering process, execute the following command:
 
 ```bash
-npm start --keyword 賴清德 --from 2023-01-01 --to 2023-01-31
+npm start -- --keyword 賴清德 --from 2023-01-01 --to 2023-01-31
 ```
+
+# Data Storage
+
+After executing the News Crawler with the provided command, the gathered news data will be stored in the `storage/datasets` directory. You can navigate to this directory to access the collected information.
