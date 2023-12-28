@@ -14,12 +14,22 @@ npm ci
 npm run install:chromium
 ```
 
+# Configuration
+
+To use the News Crawler project, you need to configure your environment variables by creating a .env file in the project root directory. Below is an example .env.example file that you can use as a template. Copy this file to a new file named .env and fill in the necessary values.
+
+```env
+# Set to true if you want the crawler to run in headless mode (no browser UI).
+CRAWLER_HEADLESS=true
+
+# If using a custom Chromium executable path, provide the full path here.
+CRAWLER_EXECUTABLE_PATH=
+```
+
 # Getting Started
 
 To start the news data gathering process, execute the following command:
 
 ```bash
-npm start
+npm start --keyword 賴清德 --from 2023-01-01 --to 2023-01-31
 ```
-
-This command will initiate the main functionality of the news crawler.

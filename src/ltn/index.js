@@ -1,7 +1,10 @@
 import { PuppeteerCrawler } from 'crawlee';
 import dayjs from 'dayjs';
+import minMax from 'dayjs/plugin/minMax.js';
 import { BASE_URL, DATE_FORMAT } from './constant/index.js';
 import createRouter from './router/index.js';
+
+dayjs.extend(minMax);
 
 class LTNCrawler {
   constructor(options) {
@@ -17,7 +20,7 @@ class LTNCrawler {
     to,
   }) {
     const start = dayjs(from);
-    const end = dayjs(to);
+    const end = dayjs.min(dayjs(to), dayjs());
     const range = end.diff(start, 'day');
 
     for (let i = 0; i < range; i += 1) {
