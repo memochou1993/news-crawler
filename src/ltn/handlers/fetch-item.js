@@ -4,7 +4,7 @@ import { DATE_FORMAT } from '../constant/index.js';
 
 const fetchItem = async ({ request, page, log }) => {
   const title = await page.title();
-  const timestamp = dayjs(await page.$eval('meta[property="article:published_time"]', ({ content }) => content));
+  const timestamp = await page.$eval('meta[property="article:published_time"]', ({ content }) => content);
   const paragraphs = await page.$$eval('.content p:not([id]):not([class])', ($elements) => (
     $elements
       .map(({ innerText }) => innerText)
@@ -13,12 +13,12 @@ const fetchItem = async ({ request, page, log }) => {
 
   const data = {
     title,
-    date: timestamp.toISOString(),
+    date: timestamp,
     url: request.loadedUrl,
     data: paragraphs,
   };
 
-  const id = timestamp.format(DATE_FORMAT);
+  const id = dayjs(timestamp).format(DATE_FORMAT);
   const dataset = await Dataset.open(id);
   dataset.pushData(data);
 
