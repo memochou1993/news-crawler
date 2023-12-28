@@ -26,6 +26,7 @@ class LTNCrawler {
     for (let i = 0; i < range; i += 1) {
       const from = start.add(i, 'day').format(DATE_FORMAT);
       const to = start.add(i + 1, 'day').format(DATE_FORMAT);
+      console.info(`Executing crawler for keyword "${keyword}" from ${from} to ${to}`);
       await this.execute({
         keyword,
         startDate: from,
@@ -39,8 +40,6 @@ class LTNCrawler {
     startDate,
     endDate,
   }) {
-    console.log(`Executing crawler for keyword "${keyword}" from ${startDate} to ${endDate}`);
-
     const params = {
       keyword,
       start_time: dayjs(startDate).format(DATE_FORMAT),

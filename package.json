@@ -4,7 +4,7 @@
     "type": "module",
     "description": "A tool for gathering news data from various sources.",
     "scripts": {
-        "install:chromium": "npx @puppeteer/browsers install chromium --path $(pwd)/bin",
+        "install:chrome": "npx puppeteer browsers install chrome",
         "start": "node src/main.js"
     },
     "author": "memochou1993@gmail.com",

@@ -11,7 +11,7 @@ Before using the News Crawler, make sure to install the required dependencies. R
 
 ```bash
 npm ci
-npm run install:chromium
+npm run install:chrome
 ```
 
 ## Configuration
@@ -21,9 +21,6 @@ To use the News Crawler project, you need to configure your environment variable
 ```env
 # Set to true if you want the crawler to run in headless mode (no browser UI).
 CRAWLER_HEADLESS=true
-
-# If using a custom Chromium executable path, provide the full path here.
-CRAWLER_EXECUTABLE_PATH=
 ```
 
 ## Getting Started

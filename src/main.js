@@ -15,12 +15,6 @@ const { keyword, from, to } = program.opts();
 const ltnCrawler = new LTNCrawler({
   maxRequestsPerCrawl: 10000,
   maxConcurrency: 10,
-  launchContext: {
-    launchOptions: {
-      executablePath: process.env.CRAWLER_EXECUTABLE_PATH,
-      headless: process.env.CRAWLER_HEADLESS === 'true',
-    },
-  },
 });
 
 ltnCrawler.run({

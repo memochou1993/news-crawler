@@ -6,7 +6,7 @@ const fetchList = async ({ page, enqueueLinks, log }) => {
     strategy: 'same-domain',
     selector: '.tit',
   });
-  log.info('Enqueueing links', links);
+  log.debug('Enqueueing links', links);
 
   const next = await page.$('.p_next');
   if (next) {
@@ -15,7 +15,7 @@ const fetchList = async ({ page, enqueueLinks, log }) => {
       strategy: 'same-domain',
       selector: '.p_next',
     });
-    log.info('Enqueueing links', links);
+    log.debug('Enqueueing links', links);
   }
 };
 
