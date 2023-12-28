@@ -4,8 +4,8 @@ import { DATE_FORMAT } from '../constant/index.js';
 
 const fetchItem = async ({ request, page, log }) => {
   const title = await page.title();
-  const timestamp = dayjs(await page.$eval('.time', ({ innerText }) => innerText));
-  const paragraphs = await page.$$eval('p', ($elements) => (
+  const timestamp = dayjs(await page.$eval('meta[property="article:published_time"]', ({ content }) => content));
+  const paragraphs = await page.$$eval('.content p:not([id]):not([class])', ($elements) => (
     $elements
       .map(({ innerText }) => innerText)
       .filter((v) => v)
