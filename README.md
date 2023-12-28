@@ -7,9 +7,16 @@ The News Crawler project is a tool created for gathering news data from diverse 
 
 ## Installation
 
-Before using the News Crawler, make sure to install the required dependencies. Run the following commands to set up the necessary environment:
+To get started, clone the News Crawler repository by executing the following command:
 
 ```bash
+git clone git@github.com:memochou1993/news-crawler.git
+```
+
+After cloning the repository, navigate to the project directory and run the following commands to install the required dependencies:
+
+```bash
+cd news-crawler
 npm ci
 ```
 
